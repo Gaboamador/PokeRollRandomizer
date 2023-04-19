@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poké & Roll - Aleatorizador</title>
+    <style>
+   
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 45px;
+        background-color: #1c2c3b; /* optional, to make header visible */
+        z-index: 1000; /* optional, to make header on top of other elements */
+        box-shadow: 0px 0px 20px 5px #768089;
+      }
+
+      body {
+        padding-top: 65px !important;
+        margin: 0;
+        padding: 0;
+        font-family: 'Gotham', sans-serif;
+        background-color: #1c2c3b;
+      }
+
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  width: 350px;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-top: 0;
+  padding-top: 5px;
+}
+
+form {
+  background-color: white;
+  padding-top: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(255,255,255, 0.3);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+input[type=checkbox]:checked:before {
+  content: "✔";
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bolder;
+  line-height: 16px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  text-align: center;
+  color: #5ccfe1;
+}
+
+input[type=checkbox]:hover:not(:checked) {
+  border-color: #5ccfe1;
+}
+
+legend {
+  font-weight: bold;
+  color: white;
+  border-bottom: 3px solid #5ccfe1;
+  border-radius: 20px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 90%;
+  text-align: center;
+  background-color:#3591b1;
+
+}
+
+fieldset {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+      }
+      
+button {
+  background-color: #3591b1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 0px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #5ccfe1;
+  color: black;
+}
+
+.buttonGoToTop {
+  width:fit-content;
+  background-color: transparent;
+  border: 1px solid #5ccfe1;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.buttonGoToTop:hover {
+  background-color: transparent;
+  color:#5ccfe1;
+  
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+  form {
+    /*padding: 10px;*/
+  }
+}
+ #result {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 80vh;
+  border-radius: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  border-radius: 15px;
+}
+td:first-child {
+  font-weight: bold;
+  border-style: none ridge none none;
+  border-color: #3591b1;
+}
+.salad-table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #ade7f0;
+}
+.salad-table td {
+  padding: 8px;
+  text-align: left;  
+}
+.salad-table tr:nth-child(even) {
+  background-color: white;
+}
+
+    </style>
+  </head>
+  <header>
+    <h1>POKÉ <span style="color: #5ccfe1;">&amp;</span> ROLL</h1>
+  </header>
+  <body>    
+    <div class="container">
+      <button id="randomizeButton" onclick="randomize()">Armar mi poké o roll aleatorio</button>
+      </div>
+
+    <div id="result"></div>
+
+    <div class="container">
+    <form>
+        <fieldset>
+          <legend>BASE</legend>
+            <label><input type="checkbox" name="base" value="Arroz blanco" checked>Arroz blanco</label>
+            <label><input type="checkbox" name="base" value="Arroz integral" checked>Arroz integral</label>
+            <label><input type="checkbox" name="base" value="Quinoa" checked>Quinoa</label>
+        </fieldset>
+        </form>
+      </div>  
+
+      <div class="container">
+      <form>
+        <fieldset>
+          <legend>VEGETALES</legend>
+            <label><input type="checkbox" name="vegetales" value="Ananá" checked>Ananá</label>  
+            <label><input type="checkbox" name="vegetales" value="Apio" checked>Apio</label>
+            <label><input type="checkbox" name="vegetales" value="Arvejas" checked>Arvejas</label>
+            <label><input type="checkbox" name="vegetales" value="Brotes de soja" checked>Brotes de soja</label>
+            <label><input type="checkbox" name="vegetales" value="Cebolla morada" checked>Cebolla morada</label>
+            <label><input type="checkbox" name="vegetales" value="Choclo" checked>Choclo</label>
+            <label><input type="checkbox" name="vegetales" value="Garbanzos" checked>Garbanzos</label>
+            <label><input type="checkbox" name="vegetales" value="Lechuga" checked>Lechuga</label>
+            <label><input type="checkbox" name="vegetales" value="Lentejas" checked>Lentejas</label>
+            <label><input type="checkbox" name="vegetales" value="Pepino" checked>Pepino</label>
+            <label><input type="checkbox" name="vegetales" value="Remolacha" checked>Remolacha</label>
+            <label><input type="checkbox" name="vegetales" value="Repollo morado" checked>Repollo morado</label>
+            <label><input type="checkbox" name="vegetales" value="Tomate" checked>Tomate</label>
+            <label><input type="checkbox" name="vegetales" value="Zanahoria" checked>Zanahoria</label>
+            <label><input type="checkbox" name="vegetales" value="Zucchini rallado" checked>Zucchini rallado</label>
+        </fieldset>
+      </form>
+      </div>
+      <div class="container">
+        <form>
+        <fieldset>
+          <legend>PROTEÍNAS</legend>
+            <label><input type="checkbox" name="proteinas" value="Ceviche" checked>Ceviche</label>
+            <label><input type="checkbox" name="proteinas" value="Falafel" checked>Falafel</label>
+            <label><input type="checkbox" name="proteinas" value="Langostinos crispy" checked>Langostinos crispy</label>
+            <label><input type="checkbox" name="proteinas" value="Pollo clásico" checked>Pollo clásico</label>
+            <label><input type="checkbox" name="proteinas" value="Pollo crispy" checked>Pollo crispy</label>
+            <label><input type="checkbox" name="proteinas" value="Pulled pork" checked>Pulled pork</label>
+            <label><input type="checkbox" name="proteinas" value="Salmón" checked>Salmón</label>
+            <label><input type="checkbox" name="proteinas" value="Ternera" checked>Ternera</label>
+            <label><input type="checkbox" name="proteinas" value="Tofu" checked>Tofu</label>
+        </fieldset>
+      </form>
+      </div>
+      <div class="container">
+        <form>
+        <fieldset>
+          <legend>SALSAS</legend>
+            <label><input type="checkbox" name="salsas" value="Alioli con palta" checked>Alioli con palta</label>
+            <label><input type="checkbox" name="salsas" value="Alioli tradicional (ajo)" checked>Alioli tradicional (ajo)</label>
+            <label><input type="checkbox" name="salsas" value="Alioli zanahoria" checked>Alioli zanahoria</label>
+            <label><input type="checkbox" name="salsas" value="Barbacoa" checked>Barbacoa</label>
+            <label><input type="checkbox" name="salsas" value="Mostaza miel" checked>Mostaza miel</label>
+            <label><input type="checkbox" name="salsas" value="Picante" checked>Picante</label>
+            <label><input type="checkbox" name="salsas" value="Pulpa mango y cilantro" checked>Pulpa mango y cilantro</label>
+            <label><input type="checkbox" name="salsas" value="Teriyaki" checked>Teriyaki</label>
+            <label><input type="checkbox" name="salsas" value="Wasabi mayo" checked>Wasabi mayo</label>
+            <label><input type="checkbox" name="salsas" value="Yogurt lima y eneldo" checked>Yogurt lima y eneldo</label>
+        </fieldset>
+      </form>
+      </div>
+      <div class="container">
+        <form>
+        <fieldset>
+          <legend>SEMILLAS</legend>
+            <label><input type="checkbox" name="toppings" value="Ninguno" checked>Ninguno</label>
+            <label><input type="checkbox" name="toppings" value="Chips de batata" checked>Chips de batata</label>
+            <label><input type="checkbox" name="toppings" value="Maní" checked>Maní</label>
+            <label><input type="checkbox" name="toppings" value="Semillas" checked>Semillas</label>
+            <label><input type="checkbox" name="toppings" value="Chips de batata y Maní" checked>Chips de batata y Maní</label>
+            <label><input type="checkbox" name="toppings" value="Chips de batata y Semillas" checked>Chips de batata y Semillas</label>
+            <label><input type="checkbox" name="toppings" value="Maní y Semillas" checked>Maní y Semillas</label>
+            <label><input type="checkbox" name="toppings" value="Chips de batata, Maní y Semillas" checked>Chips de batata, Maní y Semillas</label>
+        </fieldset>
+</form>
+<button class="buttonGoToTop" onclick="goToTop()" id="goToTopBtn" title="Go to top">Ir arriba</button>      
+</div>
+
+      
+
+<script>
+  function randomize() {
+  let base = document.querySelectorAll('input[name="base"]:checked');
+  let vegetales = document.querySelectorAll('input[name="vegetales"]:checked');
+  let proteinas = document.querySelectorAll('input[name="proteinas"]:checked');
+  let salsas = document.querySelectorAll('input[name="salsas"]:checked');
+  let toppings = document.querySelectorAll('input[name="toppings"]:checked');
+
+  let selectedBase = getRandomElement(base);
+  let selectedProteinas = getRandomElement(proteinas);
+  let selectedToppings = getRandomElement(toppings);
+  let selectedVegetalesArray = getRandomElements(vegetales, 4);
+  let selectedSalsasArray = getRandomElements(salsas, 2);
+
+  let selectedVegetales = selectedVegetalesArray.map((vegetable, index) => {
+    if (index === selectedVegetalesArray.length - 1) {
+      return " y " + vegetable;
+    } else if (index === selectedVegetalesArray.length - 2) {
+      return vegetable;
+    } else {
+      return vegetable + ", ";
+    }
+  }).join('');
+
+  let selectedSalsas = selectedSalsasArray.map((salsa, index) => {
+    if (index === selectedSalsasArray.length - 1) {
+      return " y " + salsa;
+    } else if (index === selectedSalsasArray.length - 2) {
+      return salsa;
+    } else {
+      return salsa + ", ";
+    }
+  }).join('');
+
+  let salad = {
+    "Base": selectedBase,
+    "Vegetales": selectedVegetales,
+    "Proteína": selectedProteinas,
+    "Salsas": selectedSalsas,
+    "Semillas": selectedToppings
+  };
+
+  let resultDiv = document.getElementById('result');
+  let table = document.createElement('table');
+  table.classList.add('salad-table');
+
+  for (const [category, selection] of Object.entries(salad)) {
+    let row = document.createElement('tr');
+    let categoryCell = document.createElement('td');
+    let selectionCell = document.createElement('td');
+
+    categoryCell.textContent = category;
+    selectionCell.textContent = selection;
+
+    row.appendChild(categoryCell);
+    row.appendChild(selectionCell);
+    table.appendChild(row);
+  }
+
+  resultDiv.innerHTML = '';
+  resultDiv.appendChild(table);
+  resultDiv.style.display = "block";
+}
+
+
+  function getRandomElement(elements) {
+    if (elements.length > 0) {
+      let randomIndex = Math.floor(Math.random() * elements.length);
+      return elements[randomIndex].value;
+    } else {
+      return null;
+    }
+  }
+
+  function getRandomElements(elements, count) {
+  let randomElements = [];
+  elements = Array.from(elements); // convert NodeList to array
+  while (randomElements.length < count && elements.length > 0) {
+    let randomIndex = Math.floor(Math.random() * elements.length);
+    let randomElement = elements[randomIndex].value;
+    if (!randomElements.includes(randomElement)) {
+      randomElements.push(randomElement);
+    }
+    elements = [...elements.slice(0, randomIndex), ...elements.slice(randomIndex + 1)];
+  }
+  return randomElements;
+}
+
+function goToTop() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      }
+
+</script>
+</body>
+</html>
