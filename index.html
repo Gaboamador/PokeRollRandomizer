@@ -29,6 +29,15 @@
   width: 350px;
 }
 
+.containerPrincipal {
+  margin: 0 auto;
+  padding: 20px;
+  width: 350px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  }
+
 h1 {
   color: white;
   text-align: center;
@@ -112,12 +121,17 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin-top: 0px;
-  width: 100%;
+  width: 85%;
 }
 
 button:hover {
   background-color: #5ccfe1;
   color: black;
+}
+
+.buttonShare {
+  padding: 5px;
+  width: auto;
 }
 
 .buttonGoToTop {
@@ -136,6 +150,10 @@ button:hover {
 
 @media (max-width: 480px) {
   .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+  .containerPrincipal {
     max-width: 100%;
     padding: 10px;
   }
@@ -171,15 +189,17 @@ td:first-child {
 .salad-table tr:nth-child(even) {
   background-color: white;
 }
-
     </style>
+
+
   </head>
   <header>
     <h1>POKÉ <span style="color: #5ccfe1;">&amp;</span> ROLL</h1>
   </header>
   <body>    
-    <div class="container">
+    <div class="containerPrincipal">
       <button id="randomizeButton" onclick="randomize()">Armar mi poké o roll aleatorio</button>
+      <button class="buttonShare" id="share-whatsapp"></button>
       </div>
 
     <div id="result"></div>
@@ -361,6 +381,48 @@ function goToTop() {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
       }
+
+      
+  
+      
+  const shareWhatsAppButton = document.getElementById('share-whatsapp');
+  shareWhatsAppButton.addEventListener('click', () => {
+  const resultTable = document.getElementById('result');
+  if (!resultTable || !resultTable.innerHTML.trim()) {
+    alert('Se debe armar el pedido antes de compartirlo');
+    return;
+  }
+  const tableText = getTableText(resultTable);
+  const encodedText = encodeURIComponent(tableText);
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedText}`;
+  window.open(whatsappUrl, '_blank');
+});
+
+const shareButtonImg = document.createElement('img');
+shareButtonImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/25px-WhatsApp.svg.png';
+shareButtonImg.alt = 'Share on WhatsApp';
+// const lineBreak = document.createElement('br');
+// shareWhatsAppButton.appendChild(lineBreak);
+shareWhatsAppButton.appendChild(shareButtonImg);
+
+
+function getTableText(table) {
+  let tableText = '';
+  const rows = table.querySelectorAll('tr');
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('th, td');
+    const rowData = Array.from(cells, (cell, index) => {
+      if (index === 0) {
+        return cell.textContent.toUpperCase() + ':';
+      } else {
+        return cell.textContent;
+      }
+    });
+    const rowText = rowData.join('\t');
+    tableText += rowText + '\n';
+  });
+  return tableText;
+}
 
 </script>
 </body>
